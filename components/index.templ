@@ -17,8 +17,7 @@ templ layout() {
         <div class={"row", templ.KV(rows(),true)}>
             <div class="col"></div>
             <div class="col-6">
-                @image(ReadJsonFile(ProfileDataPath))
-                @header(ReadJsonFile(ProfileDataPath))
+                @header(StaticHeader())
             </div>
             <div class="col"></div>
         </div>
@@ -26,13 +25,9 @@ templ layout() {
         <div class={"row", templ.KV(rows(),true)}>
             <div class="col"></div>
             <div class="col-8">
-                @body(ReadJsonFile(ProfileDataPath))
+              @body(StaticBody())
             </div>
             <div class="col"></div>
-        </div>
-        <!--Icons section-->
-        <div class={"row", templ.KV(rows(),true)}>
-            @icons(ReadJsonFile(IconsDataPath))
         </div>
     </div>
 }
