@@ -96,5 +96,6 @@ func (b Button) CSSClass() string {
 	if b.disabled {
 		b.cssClass = fmt.Sprintf("%s disabled", b.cssClass)
 	}
-	return b.cssClass
+	// TODO (hendrik): remove once new route has been added.
+	return fmt.Sprintf("%s disabled", b.cssClass)
 }
