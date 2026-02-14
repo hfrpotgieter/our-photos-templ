@@ -9,22 +9,22 @@ func StaticBody() Body {
 	return Body{Paragraph: "Static"}
 }
 
-func StaticHeader() Header {
+func DynamicHeader() Header {
 	if isValentinesDay() {
 		return Header{
-			Title:    "Happy Valentines Day!",
-			Subtitle: "I loooove you!",
+			Title:    "Happy Valentines Day!❤️",
+			Subtitle: "I loooove you!🤗",
 		}
 	}
 	if isAnniversaryDay() {
 		return Header{
-			Title:    "Happy Anniversary!",
-			Subtitle: fmt.Sprintf("We've been together for %.2f years!", calculateYearsTogether()),
+			Title:    "Happy Anniversary!❤️",
+			Subtitle: fmt.Sprintf("We've been together for %.2f years!🥂", calculateYearsTogether()),
 		}
 	}
 	return Header{
 		Title:    "It's not the special day yet!",
-		Subtitle: "You'll have to wait for it to come around...",
+		Subtitle: fmt.Sprintf("You'll have to wait for it to come around...⏲️"),
 	}
 }
 
