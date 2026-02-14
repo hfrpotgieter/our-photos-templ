@@ -1,0 +1,7 @@
+package components
+
+templ button(b Button) {
+    <a href={b.Href} class={b.CSSClass()} role="button" aria-disabled={b.IsDisabled()}>
+        {b.Text}
+    </a>
+}

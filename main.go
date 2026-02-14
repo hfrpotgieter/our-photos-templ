@@ -1,21 +1,55 @@
 package main
 
 import (
-	"fmt"
+	"context"
+	"log"
+	"net/http"
+	"os"
+
+	"github.com/a-h/templ"
+	"github.com/henro47/hfr-go-templ-cv/components"
 )
 
-//TIP <p>To run your code, right-click the code and select <b>Run</b>.</p> <p>Alternatively, click
-// the <icon src="AllIcons.Actions.Execute"/> icon in the gutter and select the <b>Run</b> menu item from here.</p>
+//go:generate templ generate
+
+const (
+	runArgGen = "generate"
+	runArgRun = "run"
+)
+
+// go:generate templ generate
+
+func runDevelopmentServer() {
+	homePage := components.Index()
+	pagesHandler := http.NewServeMux()
+	pagesHandler.Handle("/", templ.Handler(homePage))
+	log.Println("Starting development server on port 8080")
+	log.Fatalln(http.ListenAndServe(":8080", pagesHandler))
+}
+
+func generateHTML() {
+	f, err := os.Create("index.html")
+	if err != nil {
+		log.Fatalf("failed to create output file: %v", err)
+	}
+
+	err = components.Index().Render(context.Background(), f)
+	if err != nil {
+		log.Fatalf("failed to write output file: %v", err)
+	}
+}
 
 func main() {
-	//TIP <p>Press <shortcut actionId="ShowIntentionActions"/> when your caret is at the underlined text
-	// to see how GoLand suggests fixing the warning.</p><p>Alternatively, if available, click the lightbulb to view possible fixes.</p>
-	s := "gopher"
-	fmt.Printf("Hello and welcome, %s!\n", s)
-
-	for i := 1; i <= 5; i++ {
-		//TIP <p>To start your debugging session, right-click your code in the editor and select the Debug option.</p> <p>We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-		// for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.</p>
-		fmt.Println("i =", 100/i)
+	args := os.Args[1]
+	if len(args) == 0 {
+		log.Fatalf("You must provide arguments to genrate / run server")
+	}
+	switch args {
+	case runArgGen:
+		generateHTML()
+	case runArgRun:
+		runDevelopmentServer()
+	default:
+		log.Fatalf("Invalid argument: %s. Use either %s or %s", args, runArgGen, runArgRun)
 	}
 }

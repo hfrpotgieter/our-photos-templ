@@ -1,0 +1,38 @@
+package components
+
+css columns() {
+    padding: 0.2rem;
+    margin-left: 0.6rem;
+    margin-right: 0.6rem;
+}
+
+css rows() {
+    padding: 0.2rem;
+    margin-bottom: 0.6rem;
+}
+
+templ layout() {
+    <div class="container-fluid min-vh-100 d-flex flex-column">
+        <div class="row justify-content-center">
+            <div class="col-6 text-center">
+                @header(DynamicHeader())
+            </div>
+        </div>
+
+        <div class="row justify-content-center flex-grow-1 align-items-center">
+            <div class="col-8 d-flex flex-column align-items-center text-center">
+                @body(StaticBody())
+            </div>
+        </div>
+
+        <div class="row justify-content-center pb-5">
+            <div class="col-8 d-flex justify-content-center">
+                @button(DynamicButton())
+            </div>
+        </div>
+    </div>
+}
+
+templ Index() {
+	@Wrapper(layout())
+}

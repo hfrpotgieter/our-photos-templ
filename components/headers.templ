@@ -1,0 +1,25 @@
+package components
+
+css img() {
+    max-height: 18rem;
+    max-width: 18rem;
+}
+
+css spc() {
+    margin-top: 7rem;
+}
+
+templ spacer() {
+    <div class={"spc", templ.KV(spc(), true)}></div>
+}
+
+templ header(h Header) {
+    <figure class="text-center">
+        <blockquote class="blockquote">
+            <p>{h.Title}</p>
+        </blockquote>
+        <figcaption class="blockquote-footer">
+            {h.Subtitle}
+        </figcaption>
+    </figure>
+}
