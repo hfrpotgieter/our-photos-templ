@@ -1,0 +1,30 @@
+package components
+
+css img() {
+    max-height: 18rem;
+    max-width: 18rem;
+}
+
+css spc() {
+    margin-top: 7rem;
+}
+
+templ spacer() {
+    <div class={"spc", templ.KV(spc(), true)}></div>
+}
+
+templ header(d profileData) {
+    <figure class="text-center">
+        <blockquote class="blockquote">
+            <p>{d.ProfTitle()}</p>
+        </blockquote>
+        <figcaption class="blockquote-footer">
+            {d.ProfSubTitle()}
+        </figcaption>
+    </figure>
+}
+
+templ image(d profileData) {
+    @spacer()
+    <img class={"rounded mx-auto d-block img ", templ.KV(img(),true)} src={d.ProfImg()} alt="alt text">
+}

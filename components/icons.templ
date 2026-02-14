@@ -1,0 +1,27 @@
+package components
+
+css ico() {
+    color: black;
+    font-size: 2rem;
+    margin-left: 0.5rem;
+}
+
+templ icons(d IconData) {
+    <figure class="text-center">
+        <a href={d.GithubURL()} target="_blank">
+            <i class={"bi bi-github ico", templ.KV(ico(), true)}></i>
+        </a>
+        <a href={d.LinkedinURL()} target="_blank">
+            <i class={"bi bi-linkedin ico", templ.KV(ico(), true)}></i>
+        </a>
+        <a href={d.CellURL()} target="_blank">
+            <i class={"bi bi-telephone-inbound-fill ico", templ.KV(ico(), true)}></i>
+        </a>
+         <a href={d.EmailURL()} target="_blank">
+            <i class={"bi bi-chat-dots-fill ico", templ.KV(ico(), true)}></i>
+        </a>
+        <a href={d.ProjectURL()} target="_blank">
+            <i class={"bi bi-file-text-fill ico", templ.KV(ico(), true)}></i>
+        </a>
+    </figure>
+}

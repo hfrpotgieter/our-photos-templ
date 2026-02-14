@@ -1,0 +1,13 @@
+package components
+
+css paragraph() {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+templ body(d profileData) {
+    @spacer()
+    <blockquote class="blockquote">
+        <p class={"paragraph", templ.KV(paragraph(), true)}>{d.ProfDesc()}</p>
+    </blockquote>
+}
