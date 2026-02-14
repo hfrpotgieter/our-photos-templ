@@ -88,7 +88,8 @@ func (b Button) IsDisabled() string {
 	if b.disabled {
 		return "true"
 	}
-	return "false"
+	// TODO (hendrik): set to false once new route has been added.
+	return "true"
 }
 
 func (b Button) CSSClass() string {
