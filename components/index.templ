@@ -29,6 +29,13 @@ templ layout() {
             </div>
             <div class="col"></div>
         </div>
+        <div class={"row", templ.KV(rows(),true)}>
+                    <div class="col"></div>
+                    <div class="col-8">
+                      @button(DynamicButton())
+                    </div>
+                    <div class="col"></div>
+                </div>
     </div>
 }
 
