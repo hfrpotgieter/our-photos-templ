@@ -10,30 +10,72 @@ func StaticBody() Body {
 }
 
 func StaticHeader() Header {
-	return Header{Title: "Static", Subtitle: "Header"}
+	if isValentinesDay() {
+		return Header{
+			Title:    "Happy Valentines Day!",
+			Subtitle: "I loooove you!",
+		}
+	}
+	if isAnniversaryDay() {
+		return Header{
+			Title:    "Happy Anniversary!",
+			Subtitle: fmt.Sprintf("We've been together for %.2f years!", calculateYearsTogether()),
+		}
+	}
+	return Header{
+		Title:    "It's not the special day yet!",
+		Subtitle: "You'll have to wait for it to come around...",
+	}
 }
+
+var startDate = time.Date(2022, 8, 10, 0, 0, 0, 0, time.UTC)
 
 const (
 	anniversaryDay = 10
 	valentinesDay  = 14
 )
 
-var startDate = time.Date(2022, 8, 10, 0, 0, 0, 0, time.UTC)
+func calculateDaysTogether() float64 {
+	t := time.Date(time.Now().Year(), time.Now().Month(), time.Now().Day(), 0, 0, 0, 0, time.UTC)
+	return t.Sub(startDate).Hours() / 24
+}
+
+func calculateYearsTogether() float64 {
+	return calculateDaysTogether() / 365
+}
+
+func calculateMonthsTogether() float64 {
+	return calculateDaysTogether() / 30
+}
+
+func isValentinesDay() bool {
+	t := time.Now()
+	return t.Month() == time.February && t.Day() == valentinesDay
+}
+
+func isAnniversaryDay() bool {
+	t := time.Now()
+	return t.Month() == time.August && t.Day() == anniversaryDay
+}
 
 func DynamicButton() Button {
 	t := time.Now()
 	var isValentines, isAnniversary bool
 	text := "Not the special day yet!"
 	class := btnClassPrimary
-	switch t.Month() {
-	case time.February:
+
+	isValentines = isValentinesDay()
+	if isValentines {
 		text = "Happy Valentine's Day!"
 		isValentines = t.Day() == valentinesDay
 		class = btnClassRed
-	default:
+	}
+	isAnniversary = isAnniversaryDay()
+	if isAnniversary {
 		text = "Happy Anniversary!"
 		isAnniversary = t.Day() == anniversaryDay
 	}
+
 	return Button{
 		Text:     text,
 		cssClass: class,
